@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/models/cart.dart';
+import 'package:shop/models/order_list.dart';
 import 'package:shop/widgets/cart_item.dart';
 
 class CartPage extends StatelessWidget {
@@ -50,7 +51,14 @@ class CartPage extends StatelessWidget {
                     'COMPRAR',
                     style: TextStyle(color: Colors.purple),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Provider.of<OrderList>(
+                      context,
+                      listen: false,
+                    ).addOrder(cart);
+
+                    cart.clear();
+                  },
                 ),
               ],
             ),
